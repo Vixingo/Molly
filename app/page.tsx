@@ -1,3 +1,4 @@
+import Calendar23 from "@/components/calendar-23";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -11,6 +12,7 @@ export default function Home() {
                 <Button>Click me</Button>
             </Link>
             <ModeToggle />
+            <Calendar23 />
         </>
     );
 }
