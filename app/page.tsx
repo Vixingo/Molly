@@ -20,13 +20,23 @@ export default function Home() {
         return <p>Redirecting to dashboard...</p>;
     }
 
+    const CheckUser = () => {
+        if (user) {
+            router.push("/dashboard");
+            return <p>Redirecting to dashboard...</p>;
+        } else {
+            router.push("/login");
+            return <p>Redirecting to login...</p>;
+        }
+    };
+
     return (
         <>
             <p>Hello World</p>
             {loading ? <p>Loading...</p> : <p>Log in to continue</p>}
-            <Link href="/dashboard">
-                <Button>Click me</Button>
-            </Link>
+
+            <Button onClick={CheckUser}>Go Dashboard</Button>
+
             <ModeToggle />
         </>
     );
