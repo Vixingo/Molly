@@ -17,8 +17,8 @@ export default function Calendar23() {
     const [range, setRange] = React.useState<DateRange | undefined>(undefined);
 
     return (
-        <div className="flex flex-col gap-3">
-            <Label htmlFor="dates" className="px-1">
+        <div className="flex flex-row gap-3 p-3">
+            <Label htmlFor="dates" className="">
                 Compare to
             </Label>
             <Popover>
@@ -26,7 +26,7 @@ export default function Calendar23() {
                     <Button
                         variant="outline"
                         id="dates"
-                        className="w-56 justify-between font-normal"
+                        className="w-56 justify-between font-small"
                     >
                         {range?.from && range?.to
                             ? `${range.from.toLocaleDateString()} - ${range.to.toLocaleDateString()}`
@@ -46,6 +46,15 @@ export default function Calendar23() {
                             setRange(range);
                         }}
                     />
+                    <div className="flex flex-col gap-2 p-2">
+                        <Button
+                            variant="outline"
+                            className="w-full mt-2"
+                            onClick={() => setRange(undefined)}
+                        >
+                            Clear selection
+                        </Button>
+                    </div>
                 </PopoverContent>
             </Popover>
         </div>
