@@ -22,15 +22,17 @@ export default function Page({ children }: { children: React.ReactNode }) {
             <SidebarInset>
                 <SiteHeader />
                 <Calendar23 />
+                {/* Main content area: Nested routes will render here via the 'children' prop */}
                 <div className="flex flex-1 flex-col">
                     <div className="@container/main flex flex-1 flex-col gap-2">
                         <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-                            {/* <SectionCards /> */}
+                            <SectionCards />
                             <div className="px-4 lg:px-6">
+                                {/* Outlet for nested pages (e.g., /dashboard/products) */}
                                 {children}
-                                {/* <ChartAreaInteractive /> */}
+                                <ChartAreaInteractive />
                             </div>
-                            {/* <DataTable data={data} /> */}
+                            <DataTable data={data} />
                         </div>
                     </div>
                 </div>
