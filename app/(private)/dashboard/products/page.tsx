@@ -79,11 +79,13 @@ export default function ProductsPage() {
       );
       if (existing) {
         categoryId = existing.id;
+        // Increment product count for existing category
+        await client.from("categories").update({ product_count: existing.product_count + 1 }).eq("id", categoryId);
       } else {
-        // Insert new category
+        // Insert new category with product_count = 1
         const { data: newCat, error: catError } = await client
           .from("categories")
-          .insert([{ name: form.category.trim() }])
+          .insert([{ name: form.category.trim(), product_count: 1 }])
           .select()
           .single();
         if (catError) throw catError;

@@ -33,7 +33,7 @@ export default function ProductDetailPage() {
     <div className="max-w-2xl mx-auto p-6 bg-card text-card-foreground rounded shadow-xs border border-border mt-8">
       <div className="flex flex-col md:flex-row gap-6">
         <div className="flex-shrink-0 w-full md:w-64 h-64 bg-muted rounded flex items-center justify-center">
-          {product.image ? (
+          {product.image && (product.image.startsWith('http://') || product.image.startsWith('https://')) ? (
             <Image src={product.image} alt={product.name} width={256} height={256} className="object-contain max-h-60" />
           ) : (
             <span className="text-muted-foreground">No Image</span>

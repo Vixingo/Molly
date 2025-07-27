@@ -47,6 +47,7 @@ export default function Home() {
                 <span className="text-lg">{cat.icon || "📦"}</span>
               </div>
               <span>{cat.name}</span>
+              <span className="text-xs text-muted-foreground">{cat.product_count || 0} products</span>
             </div>
           ))}
         </div>
@@ -60,7 +61,7 @@ export default function Home() {
           {products.map((prod) => (
             <div key={prod.id} className="bg-card text-card-foreground rounded shadow-xs border border-border p-4 flex flex-col">
               <div className="w-full h-40 bg-muted rounded mb-2 flex items-center justify-center">
-                {prod.image ? (
+                {prod.image && (prod.image.startsWith('http://') || prod.image.startsWith('https://')) ? (
                   <Image src={prod.image} alt={prod.name} width={160} height={160} className="object-contain max-h-36" />
                 ) : (
                   <span className="text-muted-foreground">No Image</span>
