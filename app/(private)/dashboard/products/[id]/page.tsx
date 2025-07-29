@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import client, { fetchCategories } from "@/api/client";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -26,6 +28,16 @@ export default function ProductDetailPage() {
     if (id) loadProduct();
   }, [id]);
 
+  const handleAddToCart = () => {
+    toast.success("Product added to cart!");
+    // TODO: Implement actual cart functionality
+  };
+
+  const handleBuyNow = () => {
+    toast.success("Redirecting to checkout...");
+    // TODO: Implement direct checkout functionality
+  };
+
   if (loading) return <div className="p-8 text-center text-muted-foreground">Loading...</div>;
   if (!product) return <div className="p-8 text-center text-destructive">Product not found.</div>;
 
@@ -45,6 +57,22 @@ export default function ProductDetailPage() {
           <div className="font-bold text-lg mb-2">${product.price}</div>
           <div className="mb-2">Stock: <span className="font-medium">{product.stock}</span></div>
           {category && <div className="mb-2">Category: <span className="font-medium">{category.name}</span></div>}
+          
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-4">
+            <Button 
+              onClick={handleAddToCart}
+              className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Add to Cart
+            </Button>
+            <Button 
+              onClick={handleBuyNow}
+              className="flex-1 bg-secondary text-secondary-foreground hover:bg-secondary/80"
+            >
+              Buy Now
+            </Button>
+          </div>
         </div>
       </div>
     </div>
