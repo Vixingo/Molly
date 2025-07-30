@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchCategories, fetchProducts } from "@/api/client";
 import Image from "next/image";
 import Link from "next/link";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 
 export default function Home() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -70,7 +71,24 @@ export default function Home() {
               <div className="font-semibold mb-1">{prod.name}</div>
               <div className="text-muted-foreground text-sm mb-2 line-clamp-2">{prod.description}</div>
               <div className="font-bold text-lg mb-2">${prod.price}</div>
-              <Link href={`/dashboard/products/${prod.id}`} className="mt-auto bg-primary text-primary-foreground rounded px-4 py-2 hover:bg-primary/90 text-center">View Product</Link>
+              <div className="flex gap-2 mt-auto">
+                <Link href={`/dashboard/products/${prod.id}`} className="flex-1">
+                  <div className="bg-secondary text-secondary-foreground rounded px-4 py-2 hover:bg-secondary/90 text-center">
+                    View Details
+                  </div>
+                </Link>
+                <AddToCartButton 
+                  product={{
+                    id: prod.id,
+                    name: prod.name,
+                    price: prod.price,
+                    image: prod.image,
+                    category_id: prod.category_id
+                  }}
+                  className="flex-1"
+                  openCartOnAdd={true}
+                />
+              </div>
             </div>
           ))}
         </div>

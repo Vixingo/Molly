@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ModeToggle } from "./ModeToggle";
+import { CartIcon } from "./cart-icon";
 import { usePathname } from "next/navigation";
 
 export function SiteHeader() {
@@ -40,6 +41,7 @@ export function SiteHeader() {
                             GitHub
                         </a>
                     </Button>
+                    <CartIcon />
                     <ModeToggle />
                 </div>
             </div>

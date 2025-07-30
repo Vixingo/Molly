@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import client, { fetchCategories } from "@/api/client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { toast } from "sonner";
 
 export default function ProductDetailPage() {
@@ -27,11 +28,6 @@ export default function ProductDetailPage() {
     }
     if (id) loadProduct();
   }, [id]);
-
-  const handleAddToCart = () => {
-    toast.success("Product added to cart!");
-    // TODO: Implement actual cart functionality
-  };
 
   const handleBuyNow = () => {
     toast.success("Redirecting to checkout...");
@@ -60,12 +56,17 @@ export default function ProductDetailPage() {
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 mt-4">
-            <Button 
-              onClick={handleAddToCart}
-              className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              Add to Cart
-            </Button>
+            <AddToCartButton 
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                category_id: product.category_id
+              }}
+              className="flex-1"
+              openCartOnAdd={true}
+            />
             <Button 
               onClick={handleBuyNow}
               className="flex-1 bg-secondary text-secondary-foreground hover:bg-secondary/80"
